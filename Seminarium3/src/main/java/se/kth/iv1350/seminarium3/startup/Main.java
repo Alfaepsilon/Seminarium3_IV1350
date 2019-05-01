@@ -17,20 +17,19 @@ import se.kth.iv1350.seminarium3.dbhandler.AccountingSystem;
  *
  * @author Henri
  */
-public class Main {
-    public static void main(String[] args) {
+public class Main { //Den klass som står för att initialisera hela programmet
+    public static void main(String[] args) { //Metoden som initierar allt som behövs för att programmet skall kunna köra. Det är också från här varje system operation börjar. Erhåller inparametern args. 
         Store store = new Store("Ica", "Fjärdsgatan 12");
         PointOfSale POS = new PointOfSale("Avdelning B3");
-        AccountingSystem acct = new AccountingSystem();
         InventorySystem invt = new InventorySystem();
+        AccountingSystem acct = new AccountingSystem();
         Printer printer = new Printer();
         Controller contr = new Controller(store, POS, invt, acct, printer);
         View view  = new View(contr);
         view.initializeNewSale(store, POS);
         view.initializeScanItem();
-        //view.initializeTotalPricePlusVat();
-        //view.initializePrintReceipt(store);
-        //view.initializeLogCompletedSale(store, POS);
-        //view.initializeSendSaleInformation();
+        view.initializeLogCompletedSale(store, POS);
+        view.initializeSendSaleInformation();
+        view.initializePrintReceipt(store);
     }
 }

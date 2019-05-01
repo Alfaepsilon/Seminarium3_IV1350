@@ -14,30 +14,24 @@ import se.kth.iv1350.seminarium3.dbhandler.Store;
  *
  * @author Henri
  */
-public class SaleLogDTO {
-    private int amountPaidTotal;
+public class SaleLogDTO { //Denna klass lagrar all information som skapas i samband med köpet. Detta lagras i en DTO. 
+    private float amountPaidTotal;
     private String currency;
     private String typeOfPayment;
-    private int price;
-    private int change;
-    private int priceAfterDiscount;
-    private QuantityOfOneItem quantity;
+    private float change;
+    private int[] quantity;
     private PointOfSale POS;
-    private ItemsRegisteredForPurchase registeredItems;
-    private PurchaseTime timeOfPurchase;
+    private String timeOfPurchase;
     private Store store;
     
-    public SaleLogDTO(int amountPaidTotal, String currency, String typeOfPayment, int price, int change, int priceAfterDiscount, QuantityOfOneItem quantity, PointOfSale POS, ItemsRegisteredForPurchase registeredItems, PurchaseTime timeOfPurchase, Store store){
+    public SaleLogDTO(float amountPaidTotal, String currency, String typeOfPayment, float change, int[] quantity, PointOfSale POS, String timeOfPurchase, Store store){ //Konstruktorn till SaleLogDTO.
     this.POS = POS;
     this.amountPaidTotal = amountPaidTotal;
     this.change = change;
     this.currency = currency;
-    this.price = price;
-    this.priceAfterDiscount = priceAfterDiscount;
     this.quantity = quantity;
     this.store = store;
     this.typeOfPayment = typeOfPayment;
-    this.registeredItems = registeredItems;
     this.timeOfPurchase = timeOfPurchase;
     }
 }

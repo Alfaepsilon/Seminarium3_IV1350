@@ -9,15 +9,15 @@ package se.kth.iv1350.seminarium3.dbhandler;
  *
  * @author Henri
  */
-public class Store {
+public class Store { //Denna klass innehåller all information om affären som köpet inträffar i. 
     private String storeAdress;
     private String storeName;
     
-    public Store(String storeAdress, String storeName){
+    public Store(String storeAdress, String storeName){ //Konstruktorn till klassen Store.
         this.storeAdress = storeAdress;
         this.storeName = storeName;
     }
-    public String getStoreInformation(){
+    public String getStoreInformation(){ //Denna metod returnerar informationen av affären.
         return storeAdress + " " + storeName;
     }
 }

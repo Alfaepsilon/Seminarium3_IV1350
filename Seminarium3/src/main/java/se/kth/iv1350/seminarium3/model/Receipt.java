@@ -12,15 +12,15 @@ import se.kth.iv1350.seminarium3.model.ItemsRegisteredForPurchase;
  *
  * @author Henri
  */
-public class Receipt {
-    private PurchaseTime timeOfPurchase;
+public class Receipt { //Klassen som innehåller allt som skall visas på kvittot.
+    private String timeOfPurchase;
     private Store store;
-    private int totalPrice;
-    private ItemsRegisteredForPurchase registeredItems;
-    private int amountPaidTotal;
-    private int change;
+    private float totalPrice;
+    private int[] registeredItems;
+    private float amountPaidTotal;
+    private float change;
     
-    public Receipt(PurchaseTime timeOfPurchase, Store store, int totalPrice, ItemsRegisteredForPurchase registeredItems, int amountPaidTotal, int change){
+    public Receipt(String timeOfPurchase, Store store, float totalPrice, int[] registeredItems, float amountPaidTotal, float change){ //Konstruktorn till klassen Receipt. 
         this.amountPaidTotal = amountPaidTotal;
         this.change = change;
         this.registeredItems = registeredItems;
@@ -29,5 +29,12 @@ public class Receipt {
         this.totalPrice = totalPrice;
     }
     
+    public String print() //Denna metod returnerar allt som skall skrivas ut på skärmen när kvittot skrivs ut. 
+    {
+        return "Thank you for shopping \n" + timeOfPurchase + "\n" + store.getStoreInformation() + "\n" + 
+                "Total Price: " + totalPrice + "\n" + registeredItems[0] + " bananas " + registeredItems[1] + 
+                " apples " + registeredItems[2] + " kiwis " + registeredItems[3] + " strawberries \n" + 
+                "Amount Paid: " + amountPaidTotal + " \n" + "Change: " + change;
+    }
     
 }

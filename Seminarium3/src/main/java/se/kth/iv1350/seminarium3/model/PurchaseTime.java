@@ -9,11 +9,11 @@ package se.kth.iv1350.seminarium3.model;
  *
  * @author Henri
  */
-public class PurchaseTime {
+public class PurchaseTime { //Själva klassen PurchaseTime
     private String dateOfPurchase;
     private String timeOfPurchase;
     
-    public PurchaseTime(String dateOfPurchase, String timeOfPurchase){
+    public PurchaseTime(String dateOfPurchase, String timeOfPurchase){ //Konstruktorn till PurchaseTime
         this.dateOfPurchase = dateOfPurchase;
         this.timeOfPurchase = timeOfPurchase;
     }
