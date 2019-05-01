@@ -11,10 +11,11 @@ import se.kth.iv1350.seminarium3.model.ItemsRegisteredForPurchase;
 import se.kth.iv1350.seminarium3.model.PurchaseTime;
 import se.kth.iv1350.seminarium3.dbhandler.Store;
 /**
- *
+ *Denna klass lagrar all information som skapas i samband med köpet. Detta lagras i en DTO.
  * @author Henri
  */
-public class SaleLogDTO { //Denna klass lagrar all information som skapas i samband med köpet. Detta lagras i en DTO. 
+
+public class SaleLogDTO {  
     private float amountPaidTotal;
     private String currency;
     private String typeOfPayment;
@@ -23,8 +24,18 @@ public class SaleLogDTO { //Denna klass lagrar all information som skapas i samb
     private PointOfSale POS;
     private String timeOfPurchase;
     private Store store;
-    
-    public SaleLogDTO(float amountPaidTotal, String currency, String typeOfPayment, float change, int[] quantity, PointOfSale POS, String timeOfPurchase, Store store){ //Konstruktorn till SaleLogDTO.
+    /**
+     * Konstruktorn till SaleLogDTO.
+     * @param amountPaidTotal
+     * @param currency
+     * @param typeOfPayment
+     * @param change
+     * @param quantity
+     * @param POS
+     * @param timeOfPurchase
+     * @param store 
+     */
+    public SaleLogDTO(float amountPaidTotal, String currency, String typeOfPayment, float change, int[] quantity, PointOfSale POS, String timeOfPurchase, Store store){ 
     this.POS = POS;
     this.amountPaidTotal = amountPaidTotal;
     this.change = change;

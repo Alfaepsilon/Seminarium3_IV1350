@@ -18,10 +18,10 @@ import se.kth.iv1350.seminarium3.model.ItemsRegisteredForPurchase;
 import se.kth.iv1350.seminarium3.model.Receipt;
 import se.kth.iv1350.seminarium3.model.SaleLogDTO;
 /**
- *
+ *Den klass som delar upp alla "requests" till rätt funktioner.
  * @author Henri
  */
-public class Controller { //Den klass som delar upp alla "requests" till rätt funktioner. 
+public class Controller { 
     private Store store;
     private PointOfSale POS;
     private Printer printer;
@@ -35,21 +35,39 @@ public class Controller { //Den klass som delar upp alla "requests" till rätt f
     private float change = 0;
     AccountingSystem acct = new AccountingSystem();
     
-    
-    public Controller(Store store, PointOfSale POS, InventorySystem invt, AccountingSystem acct, Printer printer){ //Konstruktorn till Controller. Erhåller inparametrarna store, POS, invt, acct, printer.
+    /**
+     * Konstruktorn till Controller
+     * @param store
+     * @param POS
+     * @param invt
+     * @param acct
+     * @param printer 
+     */
+    public Controller(Store store, PointOfSale POS, InventorySystem invt, AccountingSystem acct, Printer printer){
         this.store = store;
         this.POS = POS;
         this.printer = printer;
         this.inventorysystem = invt;
         this.accountingsystem = acct;
     }
-    
-    public String newSale(Store store, PointOfSale POS){ //Denna metod returnerar en string som berättar i vilken affär köpet inträffar i. Erhåller inparametrarna store och POS. 
+    /**
+     * Denna metod returnerar en string som berättar i vilken affär köpet inträffar i.
+     * @param store
+     * @param POS
+     * @return <code> "New sale started in: " + store.getStoreInformation()</code>
+     */
+    public String newSale(Store store, PointOfSale POS){ 
         return "New sale started in: " + store.getStoreInformation();
     }
-    
-    public String scanItem(int itemIdentifier){ //Denna metod kollar om den givna "item identifier" är giltig, om den är det lägger vi till en av varan som matchar "item identifier". Därefter beräknar vi "running total" samt returnerar all namn, pris och pris + vat av varan. 
-        boolean itemStatus = ItemForSale.checkItemStatus(itemIdentifier); //Metoden erhåller inparametern itemIdentifer. 
+    /**
+     * Denna metod kollar om den givna "item identifier" är giltig, om den är det lägger vi till en av varan som matchar "item identifier". 
+     * Därefter beräknar vi "running total" samt returnerar all namn, pris och pris + vat av varan.
+     * @param itemIdentifier
+     * @return <code> itemregistry[itemIdentifier].getItemName() + " Price: " + itemregistry[itemIdentifier].getPrice()
+                + " Running Price: " + runningTotal</code
+     */
+    public String scanItem(int itemIdentifier){ // 
+        boolean itemStatus = ItemForSale.checkItemStatus(itemIdentifier);  
         if(itemStatus)
         {
             quantity[itemIdentifier]++;
@@ -59,8 +77,12 @@ public class Controller { //Den klass som delar upp alla "requests" till rätt f
         return itemregistry[itemIdentifier].getItemName() + " Price: " + itemregistry[itemIdentifier].getPrice()
                 + " Running Price: " + runningTotal;
     }
-    
-    public void logCompletedSale(Store store, PointOfSale POS) //Denna metod tar en "time-stamp", räknar ut växeln och skickar all information till en saleLogDTO. Metoden erhåller inparametrarna store och POS.
+    /**
+     * Denna metod tar en "time-stamp", räknar ut växeln och skickar all information till en saleLogDTO. Metoden erhåller inparametrarna store och POS.
+     * @param store
+     * @param POS 
+     */
+    public void logCompletedSale(Store store, PointOfSale POS) 
     {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -68,25 +90,37 @@ public class Controller { //Den klass som delar upp alla "requests" till rätt f
         String time = formatter.format(date);
         saleLogDTO = new SaleLogDTO(runningTotal, "Crowns", "Cash", change, quantity, POS, time, store);
     }
-    
-    public void sendSaleInformation() //Denna metod skickar all information om "sale" till InventorySystem samt AccountingSystem.
+    /**
+     * Denna metod skickar all information om "sale" till InventorySystem samt AccountingSystem.
+     */
+    public void sendSaleInformation() 
     {
         inventorysystem.setLog(saleLogDTO);
         accountingsystem.setLog(saleLogDTO);
     }
-    
-    public float getTotal() //Denna metod returnerar "running total".
+    /**
+     * Denna metod returnerar "running total".
+     * @return <code>runningTotal</code>
+     */
+    public float getTotal() 
     {
         return runningTotal;
     }
-    
-    public void setPaid(float paid) //Denna metod lägger in det kunden betalat in i kassasystemet. Metoden erhåller inparametern paid.
+    /**
+     * Denna metod lägger in det kunden betalat in i kassasystemet
+     * @param paid 
+     */
+    public void setPaid(float paid) 
     {
         amountPaid = paid;
         amountInRegister += amountPaid;
     }
-    
-    public String printReceipt(Store store){ //Denna metod returnerar all väsentlig information som behövs för att skriva ut kvittot. Metoden erhåller inparametern store. 
+    /**
+     * Denna metod returnerar all väsentlig information som behövs för att skriva ut kvittot.
+     * @param store
+     * @return <code>receipt.print()</code>
+     */
+    public String printReceipt(Store store){ 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date(); 
         Receipt receipt = new Receipt(formatter.format(date), store, runningTotal, quantity, amountPaid, change);

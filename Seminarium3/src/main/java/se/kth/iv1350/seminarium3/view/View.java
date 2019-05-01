@@ -16,18 +16,30 @@ import java.util.Scanner;
 /**
  *
  * @author Henri
+ * 
+ * Själva vyn. Det är här användaren matar in och visas information.
  */
-public class View { //Själva vyn. Det är här användaren matar in och visas information.
+public class View { 
     private Controller contr;
-    
-    public View(Controller contr){ //Konstruktorn till klassen View. Erhåller inparametern contr.
+   
+ /**
+  * Konstruktorn till klassen View.
+  * @param contr 
+  */
+    public View(Controller contr){ 
         this.contr = contr;
     }
-    
-    public void initializeNewSale(Store store, PointOfSale POS){ //Den metod som initierar newSale(). Skriver ut det som hämtas från newSale(). Erhåller inparametrarna store och POS. 
+    /**
+     * Målet med denna metod är att skriva ut information som skall skrivas ut i början av varje nytt köp. 
+     * @param store
+     * @param POS 
+     */
+    public void initializeNewSale(Store store, PointOfSale POS){ 
         System.out.println(contr.newSale(store, POS));
     }
-    
+    /**
+     * Målet med denna metod är att hantera all inmatning och utskrift som sker när varor skannas in. 
+     */
     public void initializeScanItem(){ //Metoden som initialiserar inskanningen av alla varor.
         int input = 0;
         Scanner myObj = new Scanner(System.in);
@@ -44,17 +56,26 @@ public class View { //Själva vyn. Det är här användaren matar in och visas i
         float floatInput = myObj.nextInt();
         contr.setPaid(floatInput);
     }
-    
-    public void initializeLogCompletedSale(Store store, PointOfSale POS) //Metoden som initialiserar logCompletedSale. Kallar på logCompletedSale(store, POS) i Controller. Erhåller inparametrarna store och POS. 
+    /**
+     * Målet med denna metod är att kalla på metoden logCompletedSale
+     * @param store
+     * @param POS 
+     */
+    public void initializeLogCompletedSale(Store store, PointOfSale POS) 
     {
         contr.logCompletedSale(store, POS);
     }
-    
+    /**
+     * Målet med denna metod är att kalla på metoden sendSaleInformation
+     */
     public void initializeSendSaleInformation() //Metoden som initialiserar sendSaleInformation. Kallar på sendSaleInformation() i Controller.
     {
         contr.sendSaleInformation();
     }
-    
+   /**
+    * Målet med denna metod är att skriva ut kvittot. 
+    * @param store 
+    */
     public void initializePrintReceipt(Store store){ //Metoden som initialiserar printReceipt(store). Skriver ut returvärdet av printReceipt(store) på skärmen. Erhåller inparametern store. 
         System.out.println(contr.printReceipt(store));
     }

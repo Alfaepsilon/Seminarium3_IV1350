@@ -7,14 +7,21 @@ package se.kth.iv1350.seminarium3.dbhandler;
 import se.kth.iv1350.seminarium3.model.SaleLogDTO;
 
 /**
- *
+ *Denna klass lagrar SaleLogDTO.
  * @author Henri
  */
-public class InventorySystem { //Denna klass lagrar SaleLogDTO.
+public class InventorySystem { 
     private SaleLogDTO saleLogDTO;
-    public InventorySystem(){ //Konstruktorn till klassen SaleLogDTO.
+/**
+ * Konstruktorn till klassen SaleLogDTO.
+ */    
+    public InventorySystem(){ 
     }
-    public void setLog(SaleLogDTO saleLogDTO) //Denna metod lagrar SaleLogDTO.
+/**
+ * Denna metod kopierar parametern som är en SaleLogDTO till klassens privata SaleLogDTO variabel
+ * @param saleLogDTO 
+ */    
+    public void setLog(SaleLogDTO saleLogDTO) 
     {
         this.saleLogDTO = saleLogDTO;
     }

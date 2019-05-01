@@ -36,7 +36,11 @@ public class ViewTest { //Själva test klassen.
     @org.junit.jupiter.api.AfterAll
     public static void tearDownClass() throws Exception {
     }
-
+/**
+ * Denna metod exekveras innan varje test körs. Målet med koden i denna metod är att lagra output till skärmen i minnet, därefter kan man kontrollera att korrekt data skrivs ut till skärmen. Denna metod baseras på Leif Lindbäcks
+ * video om hur man skapar tester för "println". 
+ * @throws Exception 
+ */
     @org.junit.jupiter.api.BeforeEach
     public void setUp() throws Exception { //Det som händer före varje test.
         Store store = new Store("Ica", "Fjärdsgatan 12");
@@ -51,7 +55,10 @@ public class ViewTest { //Själva test klassen.
         originalPrintln = System.out;
         System.setOut(fromMemToSysOut);
     }
-
+/**
+ * Denna metod körs efter varje test. Målet med koden i denna metod är att återställa allting till hur det var inann testet påbörjades. 
+ * @throws Exception 
+ */
     @org.junit.jupiter.api.AfterEach
     public void tearDown() throws Exception { //Det som händer efter varje test.
         System.setOut(originalPrintln);
@@ -59,7 +66,7 @@ public class ViewTest { //Själva test klassen.
     }
 
     /**
-     * Test of initializeNewSale method, of class View.
+     * Denna metod testar initializeNewSale(). Vilken skall skriva ut information till skärmen. 
      */
     @org.junit.jupiter.api.Test
     public void testInitializeNewSale(){ //Den metod som testar metoden initializeNewSale().

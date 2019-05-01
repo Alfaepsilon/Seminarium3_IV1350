@@ -8,24 +8,42 @@ import se.kth.iv1350.seminarium3.model.SaleLogDTO;
 import se.kth.iv1350.seminarium3.dbhandler.ItemForSale;
 
 /**
- *
+ *Denna klass hanterar alla uträkningar (mesta del av dem).
  * @author Henri
  */
-public class AccountingSystem { //Denna klass hanterar alla uträkningar (mesta del av dem). 
+public class AccountingSystem { 
     private SaleLogDTO saleLogDTO;
     private float runningTotal = 0;
     private float change = 0;
-    public AccountingSystem(){ //Konstruktorn till klassen AccountingSystem. 
+/**
+ * Konstruktorn till klassen AccountingSystem.
+ */    
+    public AccountingSystem(){ 
     }
-    public void setLog(SaleLogDTO saleLogDTO) //Lagrar 
+/**
+ * Denna metod kopierar parametern som är en SaleLogDTO till klassens privata SaleLogDTO variabel
+ * @param saleLogDTO 
+ */    
+    public void setLog(SaleLogDTO saleLogDTO)
     {
         this.saleLogDTO = saleLogDTO;
     }
-    public float getRunningTotal(ItemForSale[] itemregistry, int itemIdentifier){ //Räknar ut "running total", och returnerar sedan "running total". Metoden erhåller inparametrarna itemregistry och itemIdentifier. 
+/**
+ * Räknar ut "running total", och returnerar sedan "running total".
+ * @param itemregistry
+ * @param itemIdentifier
+ * @return <code>runningTotal</code>
+ */
+    public float getRunningTotal(ItemForSale[] itemregistry, int itemIdentifier){  
         runningTotal += itemregistry[itemIdentifier].getPrice() * 1.12;
         return runningTotal;
     }
-    
+/**
+ * Denna metod beräknar växeln och returnerar sedan den.
+ * @param amountPaid
+ * @param runningTotal
+ * @return <code>change</code>
+ */    
     public float getChange(float amountPaid, float runningTotal){ //Denna metod beräknar växeln och returnerar sedan den. Metoden erhåller inparametrarna amountPaid och runningTotal. 
         change = amountPaid - runningTotal;
         return change;

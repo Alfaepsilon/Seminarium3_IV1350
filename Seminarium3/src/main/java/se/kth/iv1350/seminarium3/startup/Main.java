@@ -18,7 +18,11 @@ import se.kth.iv1350.seminarium3.dbhandler.AccountingSystem;
  * @author Henri
  */
 public class Main { //Den klass som står för att initialisera hela programmet
-    public static void main(String[] args) { //Metoden som initierar allt som behövs för att programmet skall kunna köra. Det är också från här varje system operation börjar. Erhåller inparametern args. 
+    /**
+     * Målet med denna metod är att initiera allting som behövs för att programmet skall kunna köras, samt kalla på alla de metoder som skall exekveras i korrekt ordning. 
+     * @param args 
+     */
+    public static void main(String[] args) { 
         Store store = new Store("Ica", "Fjärdsgatan 12");
         PointOfSale POS = new PointOfSale("Avdelning B3");
         InventorySystem invt = new InventorySystem();
